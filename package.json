@@ -1,0 +1,18 @@
+{
+  "name": "rest-client-generator",
+  "version": "0.0.1-dev",
+  "description": "Generate servise client from WADL",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "author": "Miroslav Dzurik",
+  "dependencies": {
+    "ejs": "^2.4.1",
+    "xmldom": "^0.1.22",
+    "xpath": "0.0.22"
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5"
+  }
+}

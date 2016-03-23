@@ -1,0 +1,40 @@
+<%
+function capitalize(value) {
+    return value.charAt(0).toUpperCase() + value.slice(1);
+}
+%>/**
+ * Generated stuff...
+ */
+
+import {Injectable} from 'angular2/core'
+import {Http, Headers, RequestOptions, Response} from 'angular2/http';
+
+/**
+ * Request and response types and enumeration.
+ */
+<% types.forEach(function(type) { %>
+<%- include('type-' + type.type, {type: type, capitalize: capitalize}) %>
+<% }); %>
+
+/**
+ * Services stuff
+ */
+<% services.forEach(function(service) { %>
+<%- include('service', {service: service, types: types, capitalize: capitalize}) %>
+<% }); %>
+
+function substitudeUrl(url: string, args: Object) : string {
+    for (var key : string in args) {
+        url = url.replace('{' + key + '}', args[key]);
+    }
+    return url;
+}
+
+function getRequestOptions(requestMediaType, responseMediaType) : RequestOptions {
+    var headers : Headers = new Headers();
+    headers.append('Accept', responseMediaType);
+    headers.append('Content-Type', requestMediaType);
+    var options : RequestOptions = new RequestOptions();
+    options.headers = headers;
+    return options;
+}

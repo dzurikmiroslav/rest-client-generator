@@ -1,0 +1,9 @@
+@Injectable()
+export class <%- capitalize(service.name) %>Service {
+    
+    constructor(private http: Http) {
+    }
+<% service.methods.forEach(function (method){ %>
+<%- include('service-method', {method: method, types: types, capitalize: capitalize}) %>
+<% }); %>
+}
