@@ -1,14 +1,14 @@
-var fs = require('fs');
 var wadlParser = require('./wadl-parser');
 
 module.exports = function(options) {
   var opts = {
     wadlFile: 'application.wadl',
     outputFile: 'service.ts',
-    language: 'typescript', //typescript | dart
-    framework: 'angular2', //angular2 | dojo2
+    platform: 'typescript-angular2', //[typescript-angular2 | dart-angular2 | typescript-dojo2]
     rootPath: '',
-    defaultServiceName: 'Service' //if first resource has method
+    defaultServiceName: '', //if first resource in WADL has method
+    capitalize: true,
+    serviceSuffix: 'Service'
   };
 
   if (options) {
@@ -17,7 +17,7 @@ module.exports = function(options) {
     }
   }
 
-  var serializer = require('./serializer/' + opts.language + '-' + opts.framework);
+  var serializer = require('./serializer/' + opts.platform);
 
   var meta = wadlParser(opts);
 

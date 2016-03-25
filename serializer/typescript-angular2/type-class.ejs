@@ -1,4 +1,5 @@
-export interface <%- capitalize(type.name) %> {<% type.fields.forEach(function(field) { %>
-    <%- field.name %>: <%- field.basic ? field.type : capitalize(field.type) %><%- field.array ? '[]' : '' %>;<% }); 
-%>
+export interface <%- type.name %> {
+<% type.fields.forEach(function(field) { %>
+       <%- field.name %>: <%- field.type %><%- field.array ? '[]' : '' %>;
+<% }); %>
 }

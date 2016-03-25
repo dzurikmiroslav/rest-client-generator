@@ -1,8 +1,4 @@
-<%
-function capitalize(value) {
-    return value.charAt(0).toUpperCase() + value.slice(1);
-}
-%>/**
+/**
  * Generated stuff...
  */
 
@@ -10,17 +6,17 @@ import {Injectable} from 'angular2/core'
 import {Http, Headers, RequestOptions, Response} from 'angular2/http';
 
 /**
- * Request and response types and enumeration.
+ * Request and response types and enumerations.
  */
 <% types.forEach(function(type) { %>
-<%- include('type-' + type.type, {type: type, capitalize: capitalize}) %>
+    <%- include('type-' + type.type, {type: type}) %>
 <% }); %>
 
 /**
  * Services stuff
  */
 <% services.forEach(function(service) { %>
-<%- include('service', {service: service, types: types, capitalize: capitalize}) %>
+    <%- include('service', {service: service, types: types}) %>
 <% }); %>
 
 function substitudeUrl(url: string, args: Object) : string {
@@ -30,7 +26,7 @@ function substitudeUrl(url: string, args: Object) : string {
     return url;
 }
 
-function getRequestOptions(requestMediaType, responseMediaType) : RequestOptions {
+function getRequestOptions(requestMediaType: string, responseMediaType: string) : RequestOptions {
     var headers : Headers = new Headers();
     headers.append('Accept', responseMediaType);
     headers.append('Content-Type', requestMediaType);

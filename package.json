@@ -9,6 +9,7 @@
   "author": "Miroslav Dzurik",
   "dependencies": {
     "ejs": "^2.4.1",
+    "typescript-formatter": "^2.1.0",
     "xmldom": "^0.1.22",
     "xpath": "0.0.22"
   },

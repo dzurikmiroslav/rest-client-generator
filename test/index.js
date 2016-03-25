@@ -7,9 +7,12 @@ var outDir = __dirname + '/out';
 
 var opts = {
   wadlFile: __dirname + '/application.wadl',
-  defaultServiceName: 'TheService',
-  outputFile: outDir + '/service.ts'
-};
+  outputFile: outDir + '/service.ts',
+  platform: 'typescript-angular2',
+  rootPath: './rest/',
+  serviceSuffix: 'Service',
+  capitalize: true
+}
 
 if (!fs.existsSync(outDir)) {
   fs.mkdirSync(outDir);
