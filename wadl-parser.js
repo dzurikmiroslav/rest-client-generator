@@ -108,7 +108,7 @@ function getJsType(type) {
     case 'xs:integer':
     case 'xs:float':
     case 'xs:double':
-    case 'xs:numeric':
+    case 'xs:number':
       return 'number';
     case 'xs:boolean':
       return 'boolean';
@@ -150,12 +150,20 @@ WadlParser.prototype.readResource = function(resourceNode, parentUrlPath, parent
     var requestResponseFunc = function(variant) {
       var node = this.select('ns:' + variant, methodNode)[0];
       if (node) {
-        var paramNode = this.select('ns:param', node)[0];
+        var paramNodes = this.select('ns:param[@style="query"]', node);
         var representationNode = this.select('ns:representation', node)[0];
 
-        if (paramNode) {
-          //TODO
-        } else if (representationNode) {
+        var queryParams = paramNodes.map(function(param) {
+          return {
+            name: param.getAttribute('name'),
+            type: getJsType(param.getAttribute('type'))
+          };
+        });
+        if (queryParams.length) {
+          method.queryParams = queryParams; //response haven't query parameters
+        }
+
+        if (representationNode) {
           var type = this.typesById[representationNode.getAttribute('element')];
           if (type) {
             method[variant + 'Type'] = type.name;

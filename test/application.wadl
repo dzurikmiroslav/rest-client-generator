@@ -35,6 +35,9 @@
                 <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="arg1" style="template" type="xs:int"/>
                 <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="arg0" style="template" type="xs:string"/>
                 <method id="b" name="POST">
+                    <request>
+                      <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="arg2" style="query" type="xs:string"/>
+                    </request>
                     <response>
                         <representation mediaType="text/plain"/>
                     </response>
@@ -42,16 +45,19 @@
             </resource>
             <resource path="/">
                 <method id="getText" name="GET">
+                  <request>
+                      <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="str" style="query" type="xs:string"/>
+                  </request>
                     <response>
                         <representation mediaType="text/plain"/>
                     </response>
                 </method>
             </resource>
             <resource path="/method1">
-                <method id="a" name="GET">
+                <method id="a" name="POST">
                     <request>
                         <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="str" style="query" type="xs:string"/>
-                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="num" style="query" type="xs:string"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="num" style="query" type="xs:number"/>
                     </request>
                     <response>
                         <representation mediaType="text/plain"/>

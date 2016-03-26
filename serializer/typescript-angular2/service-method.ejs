@@ -1,58 +1,58 @@
 <%
-    var responseType = 'void';
-    if (method.responseMediaType === 'application/json') {
-        responseType = method.responseType;
-    } else if (method.responseMediaType === 'text/plain') {
-        responseType = 'string';
-    }
+  var responseType = 'void';
+  if (method.responseMediaType === 'application/json') {
+    responseType = method.responseType;
+  } else if (method.responseMediaType === 'text/plain') {
+    responseType = 'string';
+  }
 
-    var requestType = null;
-    if (method.requestMediaType === 'application/json') {
-        requestType = method.requestType;
-    } else if (method.requestMediaType === 'text/plain') {
-        requestType = 'string';
-    }
+  var requestType = null;
+  if (method.requestMediaType === 'application/json') {
+    requestType = method.requestType;
+  } else if (method.requestMediaType === 'text/plain') {
+    requestType = 'string';
+  }
 
-    var requestVar = 'req';
-    var argsVars = [];
-    if (method.pathParams) {
-        while (method.pathParams.find(function(param) {
-            return param.name === requestVar;
-        })) {
-            requestVar = '_' + requestVar;
-        }
+  var params = (method.pathParams || []).concat(method.queryParams || []);
 
-        method.pathParams.forEach(function (pathParam) {
-            argsVars.push(pathParam.name + ' : ' + pathParam.type);
-        });
-    }
-    if (requestType) {
-        argsVars.push(requestVar + ' : ' + requestType);
-    }
+  var argsVars = params.map(function(pathParam) {
+    return pathParam.name + ' : ' + pathParam.type;
+  });
+
+  if (requestType) {
+    argsVars.push('_req : ' + requestType);
+  }
 %>
 
 public <%- method.name %>(<%- argsVars.join(', ') %>): Promise<<%- responseType %>>{
-    var url : string = '<%- method.path %>';
+    var _url: string = '<%- method.path %>';
     <% if (method.pathParams) { %>
-        url = substitudeUrl(url, {
-        <% method.pathParams.forEach(function(pathParam, index) { %>
-            <%- pathParam.name %>: <%- pathParam.name %><%- index < method.pathParams.length - 1 ? ',' : '' %>
-        <% }); %>
-        });
+        _url = substitudeUrl(_url, {<%- method.pathParams.map(function(param) { return param.name; }).join(', '); %>});
     <% } %>
-    return new Promise<<%- responseType %>>((resolve, reject) => {
-        this.http.<%- method.method.toLowerCase() %>(url, <% if (method.method !== 'GET') {
-        %><%- requestType ? 'JSON.stringify(' + requestVar + ')' : '\'\'' %>,<% }
-        %> getRequestOptions('<%- method.requestMediaType || '*/*' -%>', '<%- method.responseMediaType || '*/*' %>')).subscribe(res => {
+    <% if (requestType) { %>
+      var _body: string = JSON.stringify(_req);
+    <% } else if (method.queryParams) { %>
+      var _params: string = encodeParams({<%- method.queryParams.map(function(param) { return param.name; }).join(', '); %>});
+        <% if (method.method !== 'GET') { %>
+          var _body = _params;
+        <% } else { %>
+          _url += '?' + _params;
+        <% } %>
+    <% } else if (method.method !== 'GET') { %>
+      var _body: string = '';
+    <% } %>
+    return new Promise<<%- responseType %>>((_resolve, _reject) => {
+        this.http.<%- method.method.toLowerCase() %>(_url, <% if (method.method !== 'GET') { %>_body, <% }
+        %> getRequestOptions('<%- method.requestMediaType || '*/*' -%>', '<%- method.responseMediaType || '*/*' %>')).subscribe(_res => {
             <% if (method.responseMediaType === 'application/json') { %>
-                resolve(res.text() ? res.json() : null);
+                _resolve(_res.text() ? _res.json() : null);
             <% } else if (method.responseMediaType === 'text/plain') { %>
-                resolve(res.text());
+                _resolve(_res.text());
             <% } else { %>
-                resolve();
+                _resolve();
             <% } %>
-        }, err => {
-            reject(err);
+        }, _err => {
+            _reject(_err);
         });
     });
 }

@@ -19,18 +19,24 @@ import {Http, Headers, RequestOptions, Response} from 'angular2/http';
     <%- include('service', {service: service, types: types}) %>
 <% }); %>
 
-function substitudeUrl(url: string, args: Object) : string {
-    for (var key : string in args) {
-        url = url.replace('{' + key + '}', args[key]);
-    }
+function substitudeUrl(url: string, values: Object): string {
+    Object.keys(values).map(key => {
+        url = url.replace('{' + encodeURIComponent(key) + '}', encodeURIComponent(values[key]));
+    });
     return url;
 }
 
-function getRequestOptions(requestMediaType: string, responseMediaType: string) : RequestOptions {
-    var headers : Headers = new Headers();
+function encodeParams(values: Object): string {
+    return Object.keys(values).map(key => {
+      return encodeURIComponent(key) + '=' + encodeURIComponent(values[key]);
+    }).join('&');
+}
+
+function getRequestOptions(requestMediaType: string, responseMediaType: string): RequestOptions {
+    var headers: Headers = new Headers();
     headers.append('Accept', responseMediaType);
     headers.append('Content-Type', requestMediaType);
-    var options : RequestOptions = new RequestOptions();
+    var options: RequestOptions = new RequestOptions();
     options.headers = headers;
     return options;
 }
