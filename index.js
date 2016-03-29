@@ -4,11 +4,12 @@ module.exports = function(options) {
   var opts = {
     wadlFile: 'application.wadl',
     outputFile: 'service.ts',
-    platform: 'typescript-angular2', //[typescript-angular2 | dart-angular2 | typescript-dojo2]
-    rootPath: '',
+    platform: 'angular2-ts', //[angular2-ts | angular2-dart | dojo2-ts]
+    rootUrl: '',
     defaultServiceName: '', //if first resource in WADL has method
     capitalize: true,
-    serviceSuffix: 'Service'
+    serviceSuffix: 'Service',
+    internalVariablePrefix: '_'
   };
 
   if (options) {

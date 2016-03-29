@@ -1,22 +1,32 @@
 /**
  * Generated stuff...
  */
-
-import {Injectable} from 'angular2/core'
-import {Http, Headers, RequestOptions, Response} from 'angular2/http';
+import {Injectable, EventEmitter} from 'angular2/core'
+import {Http, Headers, Request, RequestMethod, RequestOptions, Response} from 'angular2/http';
 
 /**
- * Request and response types and enumerations.
+ * Configuration stuff
+ */
+@Injectable()
+export class ServiceConfig {
+    public rootUrl: string = 'localhost:8080';
+    public request: EventEmitter<Request> = new EventEmitter<Request>();
+    public response: EventEmitter<Response> = new EventEmitter<Response>();
+}
+
+/**
+ * Request and response types and enumerations
  */
 <% types.forEach(function(type) { %>
     <%- include('type-' + type.type, {type: type}) %>
 <% }); %>
 
+
 /**
  * Services stuff
  */
 <% services.forEach(function(service) { %>
-    <%- include('service', {service: service, types: types}) %>
+    <%- include('service', {service: service, rootUrl: rootUrl, varPfx: varPfx}) %>
 <% }); %>
 
 function substitudeUrl(url: string, values: Object): string {
@@ -33,10 +43,10 @@ function encodeParams(values: Object): string {
 }
 
 function getRequestOptions(requestMediaType: string, responseMediaType: string): RequestOptions {
-    var headers: Headers = new Headers();
+    let headers: Headers = new Headers();
     headers.append('Accept', responseMediaType);
     headers.append('Content-Type', requestMediaType);
-    var options: RequestOptions = new RequestOptions();
+    let options: RequestOptions = new RequestOptions();
     options.headers = headers;
     return options;
 }

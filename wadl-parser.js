@@ -28,16 +28,18 @@ WadlParser.prototype.parse = function() {
     this.parseGrammarSchema(xsdDoc.documentElement);
   }.bind(this));
 
-  var serviceMap = {}
+  var rootUrl = null;
+  var serviceMap = {};
   this.select('//ns:application/ns:resources', doc).forEach(function(resourcesNode) {
-    var urlPath = this.options.rootPath || resourcesNode.getAttribute('base');
+    rootUrl = this.options.rootUrl || resourcesNode.getAttribute('base');
     this.select('ns:resource', resourcesNode).forEach(function(resourceNode) {
-      this.readResource(resourceNode, urlPath, [], null, serviceMap);
+      this.readResource(resourceNode, '', [], null, serviceMap);
     }.bind(this));
   }.bind(this));
 
   return {
     types: this.types,
+    rootUrl: rootUrl,
     services: Object.keys(serviceMap).map(function(key) {
       return serviceMap[key];
     })

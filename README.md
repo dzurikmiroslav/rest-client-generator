@@ -1,2 +1,2 @@
 # rest-client-generator
-Generate servise client from WADL
+Generate service client from WADL

@@ -1,9 +1,11 @@
 @Injectable()
 export class <%- service.name %> {
-    
-    constructor(private http: Http) {
+
+    private <%- varPfx %>rootUrl: string = '<%- rootUrl %>';
+
+    constructor(private <%- varPfx %>http: Http, private <%- varPfx %>serviceConfig: ServiceConfig) {
     }
-    
+
 <% service.methods.forEach(function(method) { %>
     <%- include('service-method', {method: method}) %>
 <% }); %>

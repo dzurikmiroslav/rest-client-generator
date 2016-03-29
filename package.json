@@ -1,7 +1,7 @@
 {
   "name": "rest-client-generator",
   "version": "0.0.1-dev",
-  "description": "Generate servise client from WADL",
+  "description": "Generate service client from WADL",
   "main": "index.js",
   "scripts": {
     "test": "mocha test"

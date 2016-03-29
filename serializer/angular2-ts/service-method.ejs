@@ -1,0 +1,67 @@
+<%
+  function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+  }
+
+  var responseType = 'void';
+  if (method.responseMediaType === 'application/json') {
+    responseType = method.responseType;
+  } else if (method.responseMediaType === 'text/plain') {
+    responseType = 'string';
+  }
+
+  var requestType = null;
+  if (method.requestMediaType === 'application/json') {
+    requestType = method.requestType;
+  } else if (method.requestMediaType === 'text/plain') {
+    requestType = 'string';
+  }
+
+  var params = (method.pathParams || []).concat(method.queryParams || []);
+
+  var argsVars = params.map(function(pathParam) {
+    return pathParam.name + ' : ' + pathParam.type;
+  });
+
+  if (requestType) {
+    argsVars.push( varPfx + 'request : ' + requestType);
+  }
+%>
+
+public <%- method.name %>(<%- argsVars.join(', ') %>): Promise<<%- responseType %>>{
+    let <%- varPfx %>headers: Headers = new Headers();
+    <%- varPfx %>headers.append('Accept', '<%- method.requestMediaType || '*/*' -%>');
+    <%- varPfx %>headers.append('Content-Type', '<%- method.responseMediaType || '*/*' %>');
+    let <%- varPfx %>reqOptions: RequestOptions = new RequestOptions({
+        method: RequestMethod.<%- capitalize(method.method) %>,
+        <% if (method.pathParams) { %>
+          url: this.<%- varPfx %>serviceConfig.rootUrl + substitudeUrl('<%- method.path %>', {<%- method.pathParams.map(function(param) { return param.name; }).join(', '); %>}),
+        <% } else { %>
+          url: this.<%- varPfx %>serviceConfig.rootUrl  + '<%- method.path %>',
+        <% } %>
+        <% if (requestType) { %>
+          body: JSON.stringify(<%- varPfx %>request),
+        <% } %>
+        <% if (method.queryParams) { %>
+          search: encodeParams({<%- method.queryParams.map(function(param) { return param.name; }).join(', '); %>}),
+        <% } %>
+        headers: <%- varPfx %>headers
+    });
+
+    let <%- varPfx %>req: Request = new Request(<%- varPfx %>reqOptions);
+    this.<%- varPfx %>serviceConfig.request.emit(<%- varPfx %>req);
+    return new Promise<<%- responseType %>>((<%- varPfx %>resolve, <%- varPfx %>reject) => {
+        this.<%- varPfx %>http.request(<%- varPfx %>req).subscribe(<%- varPfx %>res => {
+            this.<%- varPfx %>serviceConfig.response.emit(<%- varPfx %>res);
+            <% if (method.responseMediaType === 'application/json') { %>
+                <%- varPfx %>resolve(<%- varPfx %>res.text() ? <%- varPfx %>res.json() : null);
+            <% } else if (method.responseMediaType === 'text/plain') { %>
+                <%- varPfx %>resolve(<%- varPfx %>res.text());
+            <% } else { %>
+                <%- varPfx %>resolve();
+            <% } %>
+        }, <%- varPfx %>err => {
+            <%- varPfx %>reject(<%- varPfx %>err);
+        });
+    });
+}

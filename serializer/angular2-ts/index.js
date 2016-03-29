@@ -7,8 +7,12 @@ var template = ejs.compile(fs.readFileSync(__dirname + '/main.ejs', 'utf8'), {
 });
 
 module.exports = function(meta, options) {
-  var src = template(meta)
-    .replace(/&amp;lt;/g, '<')
+  var src = template({
+      varPfx: options.internalVariablePrefix,
+      types: meta.types,
+      rootUrl: meta.rootUrl,
+      services: meta.services
+    }).replace(/&amp;lt;/g, '<')
     .replace(/&amp;gt;/g, '>')
     .replace(/^\s*[\r\n]/gm, '');
 

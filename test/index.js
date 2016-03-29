@@ -8,10 +8,11 @@ var outDir = __dirname + '/out';
 var opts = {
   wadlFile: __dirname + '/application.wadl',
   outputFile: outDir + '/service.ts',
-  platform: 'typescript-angular2',
-  rootPath: './rest/',
+  platform: 'angular2-ts',
+  rootUrl: 'localhost:8080',
   serviceSuffix: 'Service',
-  capitalize: true
+  capitalize: true,
+  internalVariablePrefix: '_'
 }
 
 if (!fs.existsSync(outDir)) {
@@ -24,6 +25,7 @@ describe('wadl-parser', function() {
 
     assert(meta);
     assert(meta.types);
+    assert.equal(meta.rootUrl, opts.rootUrl);
     assert(meta.services);
 
     fs.writeFileSync(outDir + '/meta.json', JSON.stringify(meta, 1, 1), 'utf8');
