@@ -1,8 +1,6 @@
 @Injectable()
 export class <%- service.name %> {
 
-    private <%- varPfx %>rootUrl: string = '<%- rootUrl %>';
-
     constructor(private <%- varPfx %>http: Http, private <%- varPfx %>serviceConfig: ServiceConfig) {
     }
 

@@ -5,17 +5,17 @@ import {Injectable, EventEmitter} from 'angular2/core'
 import {Http, Headers, Request, RequestMethod, RequestOptions, Response} from 'angular2/http';
 
 /**
- * Configuration stuff
+ * Configuration stuff.
  */
 @Injectable()
 export class ServiceConfig {
-    public rootUrl: string = 'localhost:8080';
+    public rootUrl: string = '<%- rootUrl %>';
     public request: EventEmitter<Request> = new EventEmitter<Request>();
     public response: EventEmitter<Response> = new EventEmitter<Response>();
 }
 
 /**
- * Request and response types and enumerations
+ * Request and response types and enumerations.
  */
 <% types.forEach(function(type) { %>
     <%- include('type-' + type.type, {type: type}) %>
@@ -23,12 +23,20 @@ export class ServiceConfig {
 
 
 /**
- * Services stuff
+ * Services stuff.
  */
 <% services.forEach(function(service) { %>
     <%- include('service', {service: service, rootUrl: rootUrl, varPfx: varPfx}) %>
 <% }); %>
 
+/**
+ * Providers for using services.
+ */
+export const SERVICE_PROVIDERS: any[] = [ServiceConfig, <%- services.map(function (service) { return service.name; }).join(', '); %>];
+
+/**
+ * Some private methods.
+ */
 function substitudeUrl(url: string, values: Object): string {
     Object.keys(values).map(key => {
         url = url.replace('{' + encodeURIComponent(key) + '}', encodeURIComponent(values[key]));
@@ -40,13 +48,4 @@ function encodeParams(values: Object): string {
     return Object.keys(values).map(key => {
       return encodeURIComponent(key) + '=' + encodeURIComponent(values[key]);
     }).join('&');
-}
-
-function getRequestOptions(requestMediaType: string, responseMediaType: string): RequestOptions {
-    let headers: Headers = new Headers();
-    headers.append('Accept', responseMediaType);
-    headers.append('Content-Type', requestMediaType);
-    let options: RequestOptions = new RequestOptions();
-    options.headers = headers;
-    return options;
 }
