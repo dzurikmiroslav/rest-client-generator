@@ -1,19 +1,38 @@
 {
-  "name": "rest-client-generator",
-  "version": "0.0.1-dev",
-  "description": "Generate service client from WADL",
-  "main": "index.js",
-  "scripts": {
-    "test": "mocha test"
-  },
-  "author": "Miroslav Dzurik",
-  "dependencies": {
-    "ejs": "^2.4.1",
-    "typescript-formatter": "^2.1.0",
-    "xmldom": "^0.1.22",
-    "xpath": "0.0.22"
-  },
-  "devDependencies": {
-    "mocha": "^2.4.5"
-  }
+    "name": "rest-client-generator",
+    "version": "0.1.0",
+    "description": "Generate service client from WADL",
+    "keywords": [
+        "rest", "typescript", "angular2", "wadl"
+    ],
+    "license": "MIT",
+    "main": "lib/rest-client-generator.js",
+    "bin": {
+        "rest-client-generator": "./bin/rest-client-generator.js"
+    },
+    "author": "Miroslav Dzurik",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dzurikmiroslav/rest-client-generator.git"
+    },
+    "dependencies": {
+        "commander": "^2.9.0",
+        "ejs": "^2.5.3",
+        "typescript": "^2.0.10",
+        "typescript-formatter": "^4.0.1",
+        "xmldom": "^0.1.27",
+        "xpath": "^0.0.23"
+    },
+    "devDependencies": {
+        "@angular/common": "~2.2.4",
+        "@angular/core": "~2.2.4",
+        "@angular/http": "~2.2.4",
+        "@types/core-js": "^0.9.35",
+        "mocha": "^3.2.0",
+        "rimraf": "^2.5.4",
+        "rxjs": "5.0.0-rc.4"
+    },
+    "scripts": {
+        "test": "mocha test"
+    }
 }
