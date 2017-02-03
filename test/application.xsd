@@ -1,37 +1,58 @@
 <?xml version="1.0" standalone="yes"?>
 <xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:element name="loginRequest" type="loginRequest"/>
+    <xs:element name="loginRequest" type="loginRequest"/>
 
-  <xs:element name="loginResponse" type="loginResponse"/>
+    <xs:element name="loginResponse" type="loginResponse"/>
 
-  <xs:element name="userResponse" type="userResponse"/>
+    <xs:element name="userResponse" type="user"/>
 
-  <xs:complexType name="loginRequest">
-    <xs:sequence>
-      <xs:element name="username" type="xs:string" minOccurs="0"/>
-      <xs:element name="password" type="xs:string" minOccurs="0"/>
-    </xs:sequence>
-  </xs:complexType>
+    <xs:element name="personResponse" type="fullPerson"/>
 
-  <xs:complexType name="userResponse">
-    <xs:sequence>
-      <xs:element name="login" type="xs:string" minOccurs="0"/>
-      <xs:element name="roles" type="role" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-    </xs:sequence>
-  </xs:complexType>
+    <xs:complexType name="loginRequest">
+        <xs:sequence>
+            <xs:element name="username" type="xs:string" minOccurs="0"/>
+            <xs:element name="password" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
 
-  <xs:complexType name="loginResponse">
-    <xs:sequence>
-      <xs:element name="success" type="xs:boolean" minOccurs="0"/>
-    </xs:sequence>
-  </xs:complexType>
+    <xs:complexType name="user">
+        <xs:sequence>
+            <xs:element name="login" type="xs:string" minOccurs="0"/>
+            <xs:element name="roles" type="role" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
 
-  <xs:simpleType name="role">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="BASIC"/>
-      <xs:enumeration value="ADMIN"/>
-    </xs:restriction>
-  </xs:simpleType>
+    <xs:complexType name="loginResponse">
+        <xs:sequence>
+            <xs:element name="success" type="xs:boolean" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="role">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="BASIC"/>
+            <xs:enumeration value="ADMIN"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="person">
+        <xs:sequence>
+            <xs:element name="firstname" type="xs:string"/>
+            <xs:element name="lastname" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="fullPerson">
+        <xs:complexContent>
+            <xs:extension base="person">
+                <xs:sequence>
+                    <xs:element name="address" type="xs:string"/>
+                    <xs:element name="city" type="xs:string"/>
+                    <xs:element name="country" type="xs:string"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
 </xs:schema>
-
