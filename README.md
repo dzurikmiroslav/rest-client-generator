@@ -1,5 +1,11 @@
 # rest-client-generator
 
+
+[![Build Status](https://travis-ci.org/dzurikmiroslav/rest-client-generator.svg?branch=master)](https://travis-ci.org/dzurikmiroslav/rest-client-generator)
+[![NPM Version](https://img.shields.io/npm/v/rest-client-generator.svg)](https://www.npmjs.com/package/rest-client-generator)
+[![License](http://img.shields.io/npm/l/rest-client-generator.svg)](https://www.npmjs.com/package/rest-client-generator)
+
+
 Generate REST endpoint client from [WADL](http://www.w3.org/Submission/wadl/) for you project. Useful for typed languages such TypeScript and Dart. Currently support generation for platforms:
 - [x] Angular2 TypeScript
 - [ ] Angular2 Dart
