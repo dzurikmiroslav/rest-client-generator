@@ -18,7 +18,7 @@ Features:
 Install globally rest-client-generator
 
 ```bash
-npm install --global https://github.com/dzurikmiroslav/rest-client-generator/tarball/master
+npm install --global rest-client-generator
 ```
 
 
