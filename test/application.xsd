@@ -50,6 +50,7 @@
                     <xs:element name="address" type="xs:string"/>
                     <xs:element name="city" type="xs:string"/>
                     <xs:element name="country" type="xs:string"/>
+                    <xs:element name="birthDate" type="xs:date"/>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>

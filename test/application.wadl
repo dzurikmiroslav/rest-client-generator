@@ -14,62 +14,63 @@
                     </response>
                 </method>
             </resource>
-            <resource path="/auth">
-                <resource path="/login">
-                    <method id="login" name="POST">
-                        <request>
-                            <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="loginRequest" mediaType="application/json"/>
-                        </request>
-                        <response>
-                            <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="loginResponse" mediaType="application/json"/>
-                        </response>
-                    </method>
-                </resource>
-                <resource path="/user">
-                    <method id="getUser" name="POST">
-                        <response>
-                            <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="userResponse" mediaType="application/json"/>
-                        </response>
-                    </method>
-                </resource>
-                <resource path="/logout">
-                    <method id="logout" name="POST"/>
-                </resource>
+        </resource>
+        <resource path="/auth">
+            <resource path="/login">
+                <method id="login" name="POST">
+                    <request>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="loginRequest" mediaType="application/json"/>
+                    </request>
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="loginResponse" mediaType="application/json"/>
+                    </response>
+                </method>
             </resource>
-            <resource path="/stuff">
-                <resource path="/method2/{arg0}/{arg1}">
-                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="arg1" style="template" type="xs:int"/>
-                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="arg0" style="template" type="xs:string"/>
-                    <method id="postPathParams" name="POST">
-                        <request>
-                            <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="arg2" style="query" type="xs:string"/>
-                        </request>
-                        <response>
-                            <representation mediaType="text/plain"/>
-                        </response>
-                    </method>
-                </resource>
-                <resource path="/">
-                    <method id="getPlainText" name="GET">
-                        <request>
-                            <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="str" style="query" type="xs:string"/>
-                        </request>
-                        <response>
-                            <representation mediaType="text/plain"/>
-                        </response>
-                    </method>
-                </resource>
-                <resource path="/method1">
-                    <method id="postQueryParams" name="POST">
-                        <request>
-                            <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="str" style="query" type="xs:string"/>
-                            <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="num" style="query" type="xs:number"/>
-                        </request>
-                        <response>
-                            <representation mediaType="text/plain"/>
-                        </response>
-                    </method>
-                </resource>
+            <resource path="/user">
+                <method id="getUser" name="POST">
+                    <response>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="userResponse" mediaType="application/json"/>
+                    </response>
+                </method>
             </resource>
-        </resources>
-    </application>
+            <resource path="/logout">
+                <method id="logout" name="POST"/>
+            </resource>
+        </resource>
+        <resource path="/stuff">
+            <resource path="/method2/{arg0}/{arg1}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="arg1" style="template" type="xs:int"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="arg0" style="template" type="xs:string"/>
+                <method id="postPathParams" name="POST">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="arg2" style="query" type="xs:string"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/">
+                <method id="getPlainText" name="GET">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="str" style="query" type="xs:string"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/method1">
+                <method id="postQueryParams" name="POST">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="str" style="query" type="xs:string"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="num" style="query" type="xs:number"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+    </resources>
+</application>

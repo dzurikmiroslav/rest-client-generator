@@ -8,11 +8,12 @@ program
     .version('0.1.0')
     .usage('[options] <file>')
     .arguments('<file>')
-    .option('--output-file <value>', 'output file, default \'service.ts\'')
+    .option('--output-file <value>', 'output file, default \'services.ts\'')
     .option('--platform <value>', 'platform, yet only \'angular2-ts\'', /^(angular2-ts)$/i, 'angular2-ts')
     .option('--root-url <value>', 'root URL of all REST calls')
     .option('--default-service-name <value>', 'if first resource in WADL has method the servic name')
     .option('--service-suffix <value>', 'service name suffix, default \'Service\'')
+    .option('--module-name <value>', 'service module name, default \'ServiceModule\'')
     .option('--internal-variable-prefix <value>', 'internal variable prefix, default \'_\'')
     .option('--no-capitalize', 'no capitalize resource and type names')
     .parse(process.argv);
@@ -36,6 +37,7 @@ if (program.args.length !== 1) {
         defaultServiceName: program.defaultServiceName,
         capitalize: program.capitalize,
         serviceSuffix: program.serviceSuffix,
+        moduleName: program.moduleName,
         internalVariablePrefix: program.internalVariablePrefix
     });
 }
