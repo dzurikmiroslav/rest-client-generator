@@ -1,11 +1,11 @@
 {
     "name": "rest-client-generator",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Generate REST endpoint client from WADL for you project",
     "keywords": [
-        "rest", "typescript", "angular2", "wadl"
+        "rest", "typescript", "angular2", "wadl", "generator"
     ],
-    "license": "MIT",
+    "license": "Apache-2.0",
     "main": "lib/rest-client-generator.js",
     "bin": {
         "rest-client-generator": "./bin/rest-client-generator.js"
@@ -17,20 +17,20 @@
     },
     "dependencies": {
         "commander": "^2.9.0",
-        "ejs": "^2.5.3",
-        "typescript": "^2.0.10",
-        "typescript-formatter": "^4.0.1",
+        "ejs": "^2.5.5",
+        "typescript": "^2.1.5",
+        "typescript-formatter": "^4.1.1",
         "xmldom": "^0.1.27",
         "xpath": "^0.0.23"
     },
     "devDependencies": {
-        "@angular/common": "~2.2.4",
-        "@angular/core": "~2.2.4",
-        "@angular/http": "~2.2.4",
+        "@angular/common": "~2.4.7",
+        "@angular/core": "~2.4.7",
+        "@angular/http": "~2.4.7",
         "@types/core-js": "^0.9.35",
         "mocha": "^3.2.0",
         "rimraf": "^2.5.4",
-        "rxjs": "5.0.0-rc.4"
+        "rxjs": "^5.1.0"
     },
     "scripts": {
         "test": "mocha test"
