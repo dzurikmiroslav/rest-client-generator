@@ -11,21 +11,21 @@
 
     <xs:complexType name="loginRequest">
         <xs:sequence>
-            <xs:element name="username" type="xs:string" minOccurs="0"/>
-            <xs:element name="password" type="xs:string" minOccurs="0"/>
+            <xs:element name="username" type="xs:string" minOccurs="1"/>
+            <xs:element name="password" type="xs:string" minOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
 
     <xs:complexType name="user">
         <xs:sequence>
-            <xs:element name="login" type="xs:string" minOccurs="0"/>
-            <xs:element name="roles" type="role" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="login" type="xs:string" minOccurs="1"/>
+            <xs:element name="roles" type="role" nillable="true" minOccurs="1" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
 
     <xs:complexType name="loginResponse">
         <xs:sequence>
-            <xs:element name="success" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="success" type="xs:boolean" minOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -47,9 +47,9 @@
         <xs:complexContent>
             <xs:extension base="person">
                 <xs:sequence>
-                    <xs:element name="address" type="xs:string"/>
-                    <xs:element name="city" type="xs:string"/>
-                    <xs:element name="country" type="xs:string"/>
+                    <xs:element name="address" type="xs:string" minOccurs="0"/>
+                    <xs:element name="city" type="xs:string" minOccurs="0"/>
+                    <xs:element name="country" type="xs:string" minOccurs="0"/>
                     <xs:element name="birthDate" type="xs:date"/>
                 </xs:sequence>
             </xs:extension>
