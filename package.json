@@ -1,6 +1,6 @@
 {
     "name": "rest-client-generator",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "Generate REST endpoint client from WADL for you project",
     "keywords": [
         "rest", "typescript", "angular2", "wadl", "generator"
