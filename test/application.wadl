@@ -43,7 +43,10 @@
                 <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="arg0" style="template" type="xs:string"/>
                 <method id="postPathParams" name="POST">
                     <request>
-                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="arg2" style="query" type="xs:string"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="arg2" style="query" type="xs:long"/>
+                        <representation mediaType="application/x-www-form-urlencoded">
+                            <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="arg3" style="query" type="xs:int"/>
+                        </representation>
                     </request>
                     <response>
                         <representation mediaType="text/plain"/>
