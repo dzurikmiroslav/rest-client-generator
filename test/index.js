@@ -42,6 +42,6 @@ describe('wadl-client-generator', function() {
 
         //try compile generated typescript
         this.timeout(10000);
-        exec.execSync('tsc ' + opts.outputFile + ' --experimentalDecorators --moduleResolution node --baseUrl ./../node_modules/');
+        exec.execSync('tsc ' + opts.outputFile + ' --experimentalDecorators --moduleResolution node --baseUrl ./../node_modules/ --target ES6');
     });
 });
