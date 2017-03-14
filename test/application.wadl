@@ -74,6 +74,22 @@
                     </response>
                 </method>
             </resource>
+            <resource path="/file/{fileName}">
+                <param name="fileName" style="template" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <method id="getFile" name="GET">
+                    <response>
+                        <representation mediaType="application/octet-stream"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/avatar/{login}">
+                <param name="login" style="template" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+                <method id="getAvatarImage" name="GET">
+                    <response>
+                        <representation mediaType="image/png"/>
+                    </response>
+                </method>
+            </resource>
         </resource>
     </resources>
 </application>
