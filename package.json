@@ -24,9 +24,9 @@
         "xpath": "^0.0.23"
     },
     "devDependencies": {
-        "@angular/common": "^2.4.9",
-        "@angular/core": "^2.4.9",
-        "@angular/http": "^2.4.9",
+        "@angular/common": "^4.0.0",
+        "@angular/core": "^4.0.0",
+        "@angular/http": "^4.0.0",
         "@types/core-js": "^0.9.36",
         "mocha": "^3.2.0",
         "rimraf": "^2.6.1",
