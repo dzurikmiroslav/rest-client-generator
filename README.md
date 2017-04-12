@@ -104,8 +104,8 @@ Lets watch your generated rest client `services.ts`
 ```ts
 import ...
 
-export const SERVICE_ROOT_URL = new OpaqueToken('service-root-url');
-export const SERVICE_JSON_DATE_PATTERN = new OpaqueToken('service-json-date-pattern');
+export const SERVICE_ROOT_URL = new InjectionToken<string>('service-root-url');
+export const SERVICE_JSON_DATE_PATTERN = new InjectionToken<string>('service-json-date-pattern');
 ...
 export interface Person {
     id: number;
@@ -116,6 +116,7 @@ export interface Person {
 
 @Injectable()
 export class AuthService {
+    constructor...
     public login(login: string, password: string): Observable<string> {
         ...
     }
@@ -126,6 +127,7 @@ export class AuthService {
 
 @Injectable()
 export class PersonService {
+    constructor...
     public getPerson(id: number): Observable<Person> {
         ...
     }
@@ -210,13 +212,13 @@ export class PersonComponent {
     constructor(private personService: PersonService) {
     }
     doSomeStuff() {
-        var id: number = 1000;
+        let id: number = 1000;
         this.personService.getPerson(id)
             .subscribe((person: Person) => {
                 console.log('person with id %d is: %o', id, person);
             });
 
-        var person: Person = {
+        let person: Person = {
             id: null,
             firstName: 'Derp',
             lastName: 'Derpington',
