@@ -1,38 +1,43 @@
 {
-    "name": "rest-client-generator",
-    "version": "0.1.7",
-    "description": "Generate REST endpoint client from WADL for you project",
-    "keywords": [
-        "rest", "typescript", "angular2", "wadl", "generator"
-    ],
-    "license": "Apache-2.0",
-    "main": "lib/rest-client-generator.js",
-    "bin": {
-        "rest-client-generator": "./bin/rest-client-generator.js"
-    },
-    "author": "Miroslav Dzurik",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/dzurikmiroslav/rest-client-generator.git"
-    },
-    "dependencies": {
-        "commander": "^2.9.0",
-        "ejs": "^2.5.6",
-        "typescript": "^2.1.5",
-        "typescript-formatter": "^5.1.1",
-        "xmldom": "^0.1.27",
-        "xpath": "^0.0.23"
-    },
-    "devDependencies": {
-        "@angular/common": "^4.0.0",
-        "@angular/core": "^4.0.0",
-        "@angular/http": "^4.0.0",
-        "@types/core-js": "^0.9.36",
-        "mocha": "^3.2.0",
-        "rimraf": "^2.6.1",
-        "rxjs": "^5.2.0"
-    },
-    "scripts": {
-        "test": "mocha test"
-    }
+  "name": "rest-client-generator",
+  "version": "0.1.7",
+  "description": "Generate REST endpoint client from WADL for you project",
+  "keywords": [
+    "rest",
+    "typescript",
+    "angular2",
+    "wadl",
+    "generator"
+  ],
+  "license": "Apache-2.0",
+  "main": "lib/rest-client-generator.js",
+  "bin": {
+    "rest-client-generator": "./bin/rest-client-generator.js"
+  },
+  "author": "Miroslav Dzurik",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dzurikmiroslav/rest-client-generator.git"
+  },
+  "dependencies": {
+    "commander": "^2.9.0",
+    "ejs": "^2.5.6",
+    "request": "^2.81.0",
+    "typescript": "^2.1.5",
+    "typescript-formatter": "^5.1.1",
+    "xmldom": "^0.1.27",
+    "xpath": "^0.0.23"
+  },
+  "devDependencies": {
+    "@angular/common": "^4.0.0",
+    "@angular/core": "^4.0.0",
+    "@angular/http": "^4.0.0",
+    "@types/core-js": "^0.9.36",
+    "mocha": "^3.2.0",
+    "rimraf": "^2.6.1",
+    "rxjs": "^5.2.0"
+  },
+  "scripts": {
+    "test": "mocha test"
+  }
 }

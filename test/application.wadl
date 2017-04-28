@@ -10,7 +10,8 @@
             <resource path="/">
                 <method id="getPerson" name="GET">
                     <response>
-                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="personResponse" mediaType="application/json"/>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns=""
+                                            element="personResponse" mediaType="application/json"/>
                     </response>
                 </method>
             </resource>
@@ -19,17 +20,20 @@
             <resource path="/login">
                 <method id="login" name="POST">
                     <request>
-                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="loginRequest" mediaType="application/json"/>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="loginRequest"
+                                            mediaType="application/json"/>
                     </request>
                     <response>
-                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="loginResponse" mediaType="application/json"/>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns=""
+                                            element="loginResponse" mediaType="application/json"/>
                     </response>
                 </method>
             </resource>
             <resource path="/user">
                 <method id="getUser" name="POST">
                     <response>
-                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="userResponse" mediaType="application/json"/>
+                        <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns="" element="userResponse"
+                                            mediaType="application/json"/>
                     </response>
                 </method>
             </resource>
