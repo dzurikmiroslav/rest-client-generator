@@ -6,14 +6,17 @@
 [![License](http://img.shields.io/npm/l/rest-client-generator.svg)](https://www.npmjs.com/package/rest-client-generator)
 
 
-Generate REST endpoint client from [WADL](http://www.w3.org/Submission/wadl/) for you project. Useful for typed languages such TypeScript and Dart. Currently support generation for platforms:
+Generate REST endpoint client from [Swagger](http://swagger.io/) or [WADL](http://www.w3.org/Submission/wadl/) for you project. Useful for typed languages such TypeScript and Dart. Currently support generation for platforms:
 - [x] Angular2 TypeScript
 - [ ] Angular2 Dart
 - [ ] Dojo2 TypeScript
 
 Features: 
-- WADL request/response representation `application/json` is handled as interface
-- Other mimetypes such as `text/*`, `application/xml`, etc. are handled as strings
+- Request/response representation `application/json` is handled as interface
+- Mimetypes such as `text/*`, `application/xml`, etc. are handled as strings
+- Mimetype `application/octet-stream` is handled as [File](https://developer.mozilla.org/en-US/docs/Web/API/File)
+- Other mimetypes are handled as [Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob)
+- Translate date fields in response JSON to js Date object
 - Full suport XSD schema types (`xs:string`, `xs:number`, `xs:boolean`, `xs:datetime`, etc.)
 - XSD schema enumeration handled as enum
 - XSD schema extension handled as object inheritance
@@ -29,6 +32,8 @@ npm install --global rest-client-generator
 
 
 ## Generate
+
+### From WADL
 
 Get some WADL schema, for example `app.wadl`:
 ```xml
@@ -85,7 +90,7 @@ WADL file include schema `<include href="app.xsd"/>` with request and response t
             <xs:element name="id" type="xs:number"/>
             <xs:element name="firstName" type="xs:string"/>
             <xs:element name="lastName" type="xs:string"/>
-            <xs:element name="birthdate" type="xs:date"/>
+            <xs:element name="birthDate" type="xs:date"/>
         </xs:sequence>
     </xs:complexType>
 </xs:schema>
@@ -97,6 +102,117 @@ For example, you have TypeScript project with Angular2, to generate client run:
 rest-client-generator --output-file services.ts --platform angular2-ts app.wadl
 ```
 
+### From Swagger
+
+If you don't have WADL schema, you can generate client from Swagger YAML or JSON.
+Alternative of upper mentioned WADL schema in Swagger is `app.yaml`:
+```yaml
+swagger: '2.0'
+info:
+  version: v1
+  title: Test API
+host: 'localhost:8080'
+basePath: /restapi
+schemes:
+  - http
+tags:
+  - name: auth
+  - name: person
+paths:
+  /auth/login:
+    post:
+      tags:
+        - auth
+      summary: ''
+      description: ''
+      operationId: login
+      produces:
+        - text/plain
+      parameters:
+        - name: login
+          in: query
+          required: true
+          type: string
+        - name: password
+          in: query
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+  /auth/logout:
+    post:
+      tags:
+        - auth
+      summary: ''
+      description: ''
+      operationId: logout
+      responses:
+        '200':
+          description: OK
+  /person/user/{id}:
+    get:
+      tags:
+        - person
+      summary: ''
+      description: ''
+      operationId: getPerson
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int34
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Person'
+  /person/user:
+    post:
+      tags:
+        - person
+      summary: ''
+      description: ''
+      operationId: createPerson
+      consumes:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Person'
+      responses:
+        '200':
+          description: OK
+definitions:
+  Person:
+    type: object
+    required:
+      - id
+      - firstName
+      - lastName
+      - birthDate
+    properties:
+      id:
+        type: integer
+        format: int32
+      firstName:
+        type: string
+      lastName:
+        type: string
+      birthDate:
+        type: string
+        format: date
+```
+To to generate client run command:
+
+```bash
+rest-client-generator --output-file services.ts --platform angular2-ts app.yaml
+```
 
 ### Generated client
 
@@ -111,7 +227,7 @@ export interface Person {
     id: number;
     firstName: string;
     lastName: string;
-    birthdate: Date;
+    birthDate: Date;
 }
 
 @Injectable()
@@ -148,7 +264,6 @@ export class PersonService {
 })
 export class ServiceModule {
 }
-
 ```
 In your app you can change url of your REST api, with provide constant `SERVICE_ROOT_URL`:
 ```ts
