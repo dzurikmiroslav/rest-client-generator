@@ -1,0 +1,254 @@
+swagger: '2.0'
+info:
+  version: v1
+  title: Test API
+host: 'localhost:8080'
+basePath: /web-service/rest
+schemes:
+  - http
+tags:
+  - name: person
+  - name: auth
+  - name: stuff
+paths:
+  /person:
+    get:
+      tags:
+        - person
+      summary: ''
+      description: ''
+      operationId: getPerson
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/FullPerson'
+      security:
+        - basicAuth: []
+  /auth/login:
+    post:
+      tags:
+        - auth
+      summary: ''
+      description: ''
+      operationId: login
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/LoginRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/LoginResponse'
+      security:
+        - basicAuth: []
+  /auth/user:
+    post:
+      tags:
+        - auth
+      summary: ''
+      description: ''
+      operationId: getUser
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+      security:
+        - basicAuth: []
+  /auth/logout:
+    post:
+      tags:
+        - auth
+      summary: ''
+      description: ''
+      operationId: logout
+      responses:
+        '200':
+          description: OK
+      security:
+        - basicAuth: []
+  '/stuff/method2/{arg0}/{arg1}':
+    post:
+      tags:
+        - stuff
+      summary: ''
+      description: ''
+      operationId: postPathParams
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - text/plain
+      parameters:
+        - name: arg0
+          in: path
+          required: true
+          type: integer
+          format: int64
+        - name: arg1
+          in: path
+          required: true
+          type: string
+        - name: arg2
+          in: query
+          required: true
+          type: integer
+          format: int64
+        - name: arg3
+          in: formData
+          required: true
+          type: integer
+          format: int34
+      responses:
+        '200':
+          description: OK
+      security:
+        - basicAuth: []
+  /stuff:
+    get:
+      tags:
+        - stuff
+      summary: ''
+      description: ''
+      operationId: getPlainText
+      produces:
+        - text/plain
+      responses:
+        '200':
+          description: OK
+      parameters:
+        - name: str
+          in: query
+          required: true
+          type: string
+      security:
+        - basicAuth: []
+  /stuff/method1:
+    get:
+      tags:
+        - stuff
+      summary: ''
+      description: ''
+      operationId: postQueryParams
+      produces:
+        - text/plain
+      responses:
+        '200':
+          description: OK
+      parameters:
+        - name: str
+          in: query
+          required: true
+          type: string
+        - name: num
+          in: query
+          required: true
+          type: integer
+          format: int64
+      security:
+        - basicAuth: []
+  '/stuff/file/{fileName}':
+    get:
+      tags:
+        - stuff
+      summary: ''
+      description: ''
+      operationId: getFile
+      produces:
+        - application/octet-stream
+      responses:
+        '200':
+          description: OK
+      parameters:
+        - name: fileName
+          in: path
+          required: true
+          type: string
+      security:
+        - basicAuth: []
+  '/stuff/avatar/{login}':
+    get:
+      tags:
+        - stuff
+      summary: ''
+      description: ''
+      operationId: getAvatarImage
+      produces:
+        - image/png
+      responses:
+        '200':
+          description: OK
+      parameters:
+        - name: login
+          in: path
+          required: true
+          type: string
+      security:
+        - basicAuth: []
+securityDefinitions:
+  basicAuth:
+    type: basic
+definitions:
+  LoginRequest:
+    type: object
+    required:
+      - username
+      - password
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+  User:
+    type: object
+    required:
+      - login
+      - roles
+    properties:
+      login:
+        type: string
+      roles:
+        type: array
+        items:
+          type: string
+          enum:
+            - ADMIN
+            - USER
+  LoginResponse:
+    type: object
+    required:
+      - success
+    properties:
+      success:
+        type: boolean
+  FullPerson:
+    type: object
+    required:
+      - firstname
+      - lastname
+      - birthDate
+    properties:
+      firstname:
+        type: string
+      lastname:
+        type: string
+      address:
+        type: string
+      city:
+        type: string
+      country:
+        type: string
+      birthDate:
+        type: string
+        format: date

@@ -23,6 +23,7 @@ program.on('--help', function () {
     console.log('');
     console.log('    $ rest-client-generator --output-file services.ts --root-url http://my.server/rest/ application.wadl');
     console.log('    $ rest-client-generator --output-file services.ts http://my.server/rest/application.wadl');
+    console.log('    $ rest-client-generator --output-file services.ts swagger.yaml');
     console.log('');
 });
 
@@ -30,7 +31,7 @@ if (program.args.length !== 1) {
     program.help();
 } else {
     restClientGenerator({
-        wadl: program.args[0],
+        input: program.args[0],
         outputFile: program.outputFile,
         platform: program.platform,
         rootUrl: program.rootUrl,

@@ -1,12 +1,14 @@
 {
   "name": "rest-client-generator",
   "version": "0.1.7",
-  "description": "Generate REST endpoint client from WADL for you project",
+  "description": "Generate REST endpoint client from Swagger or WADL for you project",
   "keywords": [
     "rest",
+    "api",
     "typescript",
     "angular2",
     "wadl",
+    "swagger",
     "generator"
   ],
   "license": "Apache-2.0",
@@ -22,6 +24,8 @@
   "dependencies": {
     "commander": "^2.9.0",
     "ejs": "^2.5.6",
+    "js-yaml": "^3.8.4",
+    "lodash": "^4.17.4",
     "request": "^2.81.0",
     "typescript": "^2.1.5",
     "typescript-formatter": "^5.1.3",
