@@ -43,8 +43,8 @@
         </resource>
         <resource path="/stuff">
             <resource path="/method2/{arg0}/{arg1}">
-                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="arg1" style="template" type="xs:int"/>
                 <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="arg0" style="template" type="xs:string"/>
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="arg1" style="template" type="xs:int"/>
                 <method id="postPathParams" name="POST">
                     <request>
                         <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="arg2" style="query" type="xs:long"/>

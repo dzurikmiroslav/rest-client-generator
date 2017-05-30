@@ -94,12 +94,12 @@ paths:
         - name: arg0
           in: path
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: arg1
           in: path
           required: true
-          type: string
+          type: integer
+          format: int64
         - name: arg2
           in: query
           required: true
@@ -135,7 +135,7 @@ paths:
       security:
         - basicAuth: []
   /stuff/method1:
-    get:
+    post:
       tags:
         - stuff
       summary: ''
@@ -235,8 +235,8 @@ definitions:
   FullPerson:
     type: object
     required:
-      - firstname
-      - lastname
+      - firstName
+      - lastName
       - birthDate
     properties:
       firstname:
