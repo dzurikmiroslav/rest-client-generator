@@ -23,6 +23,7 @@ program.on('--help', function () {
     console.log('');
     console.log('    $ rest-client-generator --output-file services.ts --root-url http://my.server/rest/ application.wadl');
     console.log('    $ rest-client-generator --output-file services.ts http://my.server/rest/application.wadl');
+    console.log('    $ rest-client-generator --output-file services.ts https://user:pass@my.server/rest/application.wadl');
     console.log('    $ rest-client-generator --output-file services.ts swagger.yaml');
     console.log('');
 });
