@@ -18,9 +18,9 @@
 
     <xs:complexType name="user">
         <xs:sequence>
-            <xs:element name="login" type="xs:string" minOccurs="1"/>
             <xs:element name="roles" type="role" nillable="true" minOccurs="1" maxOccurs="unbounded"/>
         </xs:sequence>
+        <xs:attribute name="login" type="xs:string" use="required"/>
     </xs:complexType>
 
     <xs:complexType name="loginResponse">
