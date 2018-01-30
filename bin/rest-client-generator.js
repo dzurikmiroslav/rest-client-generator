@@ -3,9 +3,10 @@
 'use strict';
 var restClientGenerator = require('../lib/rest-client-generator');
 var program = require('commander');
+var pkg = require('../package.json');
 
 program
-    .version('0.1.0')
+    .version(pkg.version)
     .usage('[options] <wadl>')
     .arguments('<wadl>')
     .option('--output-file <value>', 'output file, default \'services.ts\'')
@@ -18,9 +19,9 @@ program
     .option('--module-name <value>', 'service module name, default \'ServiceModule\'')
     .option('--internal-variable-prefix <value>', 'internal variable prefix, default \'_\'')
     .option('--no-capitalize', 'no capitalize resource and type names')
-    .parse(process.argv);
 
 program.on('--help', function () {
+    console.log('');
     console.log('  Examples:');
     console.log('');
     console.log('    $ rest-client-generator --output-file services.ts --root-url http://my.server/rest/ application.wadl');
@@ -29,6 +30,8 @@ program.on('--help', function () {
     console.log('    $ rest-client-generator --output-file services.ts swagger.yaml');
     console.log('');
 });
+
+program.parse(process.argv);
 
 if (program.args.length !== 1) {
     program.help();
