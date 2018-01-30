@@ -7,17 +7,17 @@ basePath: /web-service/rest
 schemes:
   - http
 tags:
-  - name: person
+  - name: person-endpoint
   - name: auth
   - name: stuff
 paths:
   /person:
     get:
       tags:
-        - person
+        - person-endpoint
       summary: ''
       description: ''
-      operationId: getPerson
+      operationId: get-person-method
       produces:
         - application/json
       responses:

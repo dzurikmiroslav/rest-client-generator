@@ -16,6 +16,8 @@ var wadlOpts = {
     platform: 'angular2-ts',
     rootUrl: 'localhost:8080',
     serviceSuffix: 'Service',
+    serviceExclude: 'endpoint',
+    methodExclude: 'method',
     capitalize: true,
     internalVariablePrefix: '_'
 };
@@ -26,6 +28,8 @@ var swagOpts = {
     platform: 'angular2-ts',
     rootUrl: 'localhost:8080',
     serviceSuffix: 'Service',
+    serviceExclude: 'endpoint',
+    methodExclude: 'method',
     capitalize: true,
     internalVariablePrefix: '_'
 };

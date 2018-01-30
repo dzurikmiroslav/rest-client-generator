@@ -6,9 +6,9 @@
         </include>
     </grammars>
     <resources base="http://localhost:8080/web-service/rest/">
-        <resource path="/person">
+        <resource path="/person-endpoint">
             <resource path="/">
-                <method id="getPerson" name="GET">
+                <method id="get-person-method" name="GET">
                     <response>
                         <ns2:representation xmlns:ns2="http://wadl.dev.java.net/2009/02" xmlns=""
                                             element="personResponse" mediaType="application/json"/>
