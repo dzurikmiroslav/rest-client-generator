@@ -1,6 +1,6 @@
 {
   "name": "rest-client-generator",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Generate REST endpoint client from Swagger or WADL for you project",
   "keywords": [
     "rest",
