@@ -2,3 +2,4 @@ node_modules
 test/out
 nbproject
 .idea
+package-lock.json
