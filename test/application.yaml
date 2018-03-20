@@ -225,6 +225,10 @@ definitions:
           enum:
             - ADMIN
             - USER
+      permissions:
+        type: array
+        items:
+          type: string
   LoginResponse:
     type: object
     required:

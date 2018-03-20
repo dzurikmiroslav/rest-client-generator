@@ -19,6 +19,7 @@
     <xs:complexType name="user">
         <xs:sequence>
             <xs:element name="roles" type="role" nillable="true" minOccurs="1" maxOccurs="unbounded"/>
+            <xs:element name="permissions" type="xs:string" nillable="true" minOccurs="1" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attribute name="login" type="xs:string" use="required"/>
     </xs:complexType>
