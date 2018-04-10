@@ -94,6 +94,36 @@
                     </response>
                 </method>
             </resource>
+            <resource path="/deleteMethod">
+                <method id="testDelete" name="DELETE">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="str" style="query" type="xs:string"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/optionMethod">
+                <method id="testOption" name="OPTIONS">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="str" style="query" type="xs:string"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/headMethod">
+                <method id="testHead" name="HEAD">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="str" style="query" type="xs:string"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+            </resource>
         </resource>
     </resources>
 </application>
