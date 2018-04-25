@@ -25,7 +25,7 @@ var wadlOpts = {
 var swagOpts = {
     input: __dirname + '/application.yaml',
     outputFile: outDir + '/service_swag.ts',
-    platform: 'angular2-ts',
+    platform: 'angular5-ts',
     rootUrl: 'localhost:8080',
     serviceSuffix: 'Service',
     serviceExclude: 'endpoint',

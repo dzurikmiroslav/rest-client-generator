@@ -177,6 +177,29 @@ paths:
           type: string
       security:
         - basicAuth: []
+  '/stuff/file/':
+    post:
+      tags:
+        - stuff
+      summary: ''
+      description: ''
+      operationId: uploadFile
+      consumes:
+        - multipart/form-data
+      responses:
+        '200':
+          description: OK
+      parameters:
+        - name: file
+          in: formData
+          required: true
+          type: file
+        - name: fileName
+          in: formData
+          required: true
+          type: string
+      security:
+        - basicAuth: []
   '/stuff/avatar/{login}':
     get:
       tags:
