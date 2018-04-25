@@ -21,6 +21,7 @@ Features:
 - Full suport XSD schema types (`xs:string`, `xs:number`, `xs:boolean`, `xs:datetime`, etc.)
 - XSD schema enumeration handled as enum
 - XSD schema extension handled as object inheritance
+- Support fileupload in multipart/form-data
 
 
 ## Instalation
