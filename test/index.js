@@ -13,7 +13,7 @@ var outDir = __dirname + '/out';
 var wadlOpts = {
     input: __dirname + '/application.wadl',
     outputFile: outDir + '/service_wadl.ts',
-    platform: 'angular5-ts',
+    platform: 'angular6-ts',
     rootUrl: 'localhost:8080',
     serviceSuffix: 'Service',
     serviceExclude: 'endpoint',
@@ -25,7 +25,7 @@ var wadlOpts = {
 var swagOpts = {
     input: __dirname + '/application.yaml',
     outputFile: outDir + '/service_swag.ts',
-    platform: 'angular5-ts',
+    platform: 'angular6-ts',
     rootUrl: 'localhost:8080',
     serviceSuffix: 'Service',
     serviceExclude: 'endpoint',

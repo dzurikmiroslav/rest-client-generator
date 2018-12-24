@@ -7,6 +7,7 @@
 
 
 Generate REST endpoint client from [Swagger](http://swagger.io/) or [WADL](http://www.w3.org/Submission/wadl/) for you project. Useful for typed languages such TypeScript and Dart. Currently support generation for platforms:
+- [x] Angular6 TypeScript (via @angular/common/http)
 - [x] Angular5 TypeScript (via @angular/common/http)
 - [x] Angular2 TypeScript (via @angular/http)
 - [ ] Angular2 Dart
