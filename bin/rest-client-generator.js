@@ -10,7 +10,7 @@ program
     .usage('[options] <wadl>')
     .arguments('<wadl>')
     .option('--output-file <value>', 'output file', 'services.ts')
-    .option('--platform <value>', 'platform, yet only: \'angular2-ts\', \'angular5-ts\'', /^(angular2-ts|angular5-ts)$/i, 'angular5-ts')
+    .option('--platform <value>', 'platform, yet only: \'angular2-ts\', \'angular5-ts\', \'angular6-ts\'', /^(angular2-ts|angular5-ts|angular6-ts)$/i, 'angular6-ts')
     .option('--root-url <value>', 'root URL of all REST calls')
     .option('--default-service-name <value>', 'if first resource in WADL has method the service name')
     .option('--service-suffix <value>', 'service name suffix', 'Service')
