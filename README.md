@@ -19,13 +19,13 @@ Features:
 - Mimetype `application/octet-stream` is handled as [File](https://developer.mozilla.org/en-US/docs/Web/API/File)
 - Other mimetypes are handled as [Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob)
 - Translate date fields in response JSON to js Date object
-- Full suport XSD schema types (`xs:string`, `xs:number`, `xs:boolean`, `xs:datetime`, etc.)
+- Full support XSD schema types (`xs:string`, `xs:number`, `xs:boolean`, `xs:datetime`, etc.)
 - XSD schema enumeration handled as enum
 - XSD schema extension handled as object inheritance
 - Support fileupload in multipart/form-data
 
 
-## Instalation
+## Installation
 
 Install globally rest-client-generator
 
@@ -275,7 +275,7 @@ bootstrap(AppComponent,[provide(SERVICE_ROOT_URL, { useValue='http://yourapp.com
 
 In JSON date types has string representation (ISO 8601). TypeScript is not able to recognize it and convert to Date object. Constant `SERVICE_JSON_DATE_PATTERN` is regular expression, which test all received strings, if they matched is converted to Date object.
 
-Interface `Person` is type from schema `app.xsd`. Services `AuthService` and `PersonService` are resources from WADL `app.wadl` with they methods. HTTP call are asynchronous, so mehods return `Observable`.
+Interface `Person` is type from schema `app.xsd`. Services `AuthService` and `PersonService` are resources from WADL `app.wadl` with they methods. HTTP call are asynchronous, so methods return `Observable`.
 
 
 ## Usage
